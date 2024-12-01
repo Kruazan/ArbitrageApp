@@ -1,51 +1,33 @@
-#pragma once
+#ifndef CURRENCY_H
+#define CURRENCY_H
 
-#include <iostream>
 #include <string>
+#include <vector>
+#include "exchange.h"
 
-namespace CryptoCurrencies
-{
-	class CryptoCurrency
-	{
-	private:
-		std::string name;
-		std::string alphabetCode;
-		float price;
-	public:
-		CryptoCurrency(std::string name, std::string alphabetCode, float price);
+using namespace std;
 
-		std::string GetName() { return name; }
-		std::string GetAlphabetCode() { return alphabetCode; }
-		float GetPrice() { return price; }
-	};
+class Currency {
+private:
+    string name;          // Название валюты
+    string price;         // Цена валюты
+    string change;        // Изменение цены
+    vector<Exchange> exchanges; // Список бирж с их ценами и валютными парами
 
-	class Asset : public CryptoCurrency
-	{
-	private:
-		float currentPrice;
-		float dailyVolume;
-		float marketCap;
-	public:
-		Asset(std::string name, std::string alphabetCode, float price,
-			float currentPrice, float dailyVolume, float marketCap);
+public:
+    Currency(const string& name, const string& price, const string& change)
+        : name(name), price(price), change(change) {}
 
-		float GetCurrentPrice() { return currentPrice; }
-		float GetDailyVolume() { return dailyVolume; }
-		float GetMarketCap() { return marketCap; }
-	};
+    // Методы для добавления биржи
+    void addExchange(const Exchange& exchange) {
+        exchanges.push_back(exchange);
+    }
 
-	class AnalyzedAsset : public Asset
-	{
-	private:
-		std::string assetLink;
-		float spread;
-		//todo �������� �������
-	public:
-		AnalyzedAsset(std::string name, std::string alphabetCode, float price,
-			float currentPrice, float dailyVolume, float marketCap,
-			std::string assetLink, float spread);
+    // Геттеры
+    string getName() const { return name; }
+    string getPrice() const { return price; }
+    string getChange() const { return change; }
+    vector<Exchange> getExchanges() const { return exchanges; }
+};
 
-		std::string GetAssetLink() { return assetLink; }
-		float GetSpread() { return spread; }
-	};
-}
+#endif // CURRENCY_H
