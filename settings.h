@@ -7,9 +7,9 @@ namespace Settings
 	class RiskParameters
 	{
 	public:
-		float minVolume;
 		float minSpread;
-		float balancePercent;
-		float minProfitPercent;
+        float balancePercent; //если будет проведены транзакции на весь баланс
+        float minProfitPercent; //если будет проведена 1 транзакция
+        float minBalance; //минимальная сумма на балансе для связки
 	};
 }

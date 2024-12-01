@@ -2,8 +2,6 @@
 
 using namespace Calculating;
 
-float Calculation::FullVolumeProfit(AnalyzedAsset asset, Exchange exchange)
-{
-	float profit = exchange.GetBalance() * asset.GetSpread() - exchange.GetTransferFee();
-	return profit;
-}
+//float Calculation::FullVolumeProfit(AnalyzedAsset asset, Exchange exchange)
+//{
+//}
